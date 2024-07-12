@@ -1,0 +1,40 @@
+{
+  "name": "aws-simple-assume",
+  "version": "1.0.0",
+  "description": "Simple AWS Assume Role",
+  "main": "index.js",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barneyparker/aws-simple-assume.git"
+  },
+  "bugs": {
+    "url": "https://github.com/barneyparker/aws-simple-assume/issues"
+  },
+  "homepage": "https://github.com/barneyparker/aws-simple-assume#readme",
+  "keywords": [
+    "AWS",
+    "SSO",
+    "Organization",
+    "OIDC"
+  ],
+  "author": "Barney Parker",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version:patch": "npm version patch --commit-hooks=false",
+    "version:minor": "npm version minor --commit-hooks=false",
+    "version:major": "npm version major --commit-hooks=false",
+    "postversion": "git push && git push --tags && npm publish",
+    "doc": "jsdoc2md -t README.hbs index.js > README.md"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sts": "^3.614.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "eslint": "^9.6.0",
+    "eslint-plugin-jsdoc": "^48.5.2",
+    "jsdoc-to-markdown": "^8.0.1"
+  }
+}
