@@ -33,7 +33,8 @@ import { STS } from '@aws-sdk/client-sts'
  */
 export const assumeRole = async (roleArn, roleSessionName, options) => {
   let sts
-  if (options.credentials.accessKeyId !== undefined) {
+
+  if (options.credentials && options.credentials.accessKeyId !== undefined) {
     sts = new STS({ credentials: options.credentials, region: process.env.AWS_REGION })
   } else {
     sts = new STS({ region: process.env.AWS_REGION })
@@ -48,9 +49,9 @@ export const assumeRole = async (roleArn, roleSessionName, options) => {
   const credentials = await sts.assumeRole(params)
 
   return {
-    accessKeyId: credentials.Credentials?.AccessKeyId,
-    secretAccessKey: credentials.Credentials?.SecretAccessKey,
-    sessionToken: credentials.Credentials?.SessionToken,
+    accessKeyId: credentials.Credentials?.AccessKeyId || '',
+    secretAccessKey: credentials.Credentials?.SecretAccessKey || '',
+    sessionToken: credentials.Credentials?.SessionToken || '',
     expiry: credentials.Credentials?.Expiration,
   }
 }
